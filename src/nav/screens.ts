@@ -1,3 +1,3 @@
-export const routes = {
-  HOME: 'Home',
-};
+export enum routes {
+  HOME = 'Home',
+}
