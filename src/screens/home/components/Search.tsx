@@ -1,6 +1,6 @@
 import {StyleSheet, TextInput} from 'react-native';
 import {VInput, VText, VView} from '../../../ui';
-import {Colors, Palette} from '@src/ui/color';
+import {Palette} from '@src/ui/color';
 
 const SEARCH_PLACEHOLDER = 'Search Movies';
 export function HomeSearch() {
