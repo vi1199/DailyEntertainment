@@ -6,10 +6,14 @@ import {HomeSearch} from './components/Search';
 import {useGetTodosQuery} from '@src/services/api.slice';
 import {ActivityIndicator} from 'react-native';
 import {VView} from '@src/ui';
+import Config from 'react-native-config';
 
 type Props = NativeStackScreenProps<RootStackParamList, routes.HOME>;
 export const Home = ({route, navigation}: Props) => {
   const {data, isLoading} = useGetTodosQuery('args');
+  const envFile = Config.API_KEY;
+
+  console.log('env:: ', Config.API_KEY);
 
   return (
     <Layout>
