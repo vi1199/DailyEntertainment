@@ -5,8 +5,7 @@ import {rootReducer} from '../reducers';
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: [logger],
-  enhancers: [monitorReducerEnhancer],
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
 });
 
 export default store;
