@@ -5,10 +5,12 @@ import {routes} from '../../nav/screens';
 import {Layout} from './components/layout/HomeLayout';
 import {HomeScreenNavProps} from '@src/types/nav';
 import {TrendingMoviesList} from './components/TrendingMovieList';
+import {GlobalSearch} from './components/GlobalSearch';
 
 export const Home = ({route, navigation}: HomeScreenNavProps) => {
   return (
     <Layout>
+      <GlobalSearch />
       <TrendingMoviesList />
     </Layout>
   );
