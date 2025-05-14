@@ -1,15 +1,18 @@
-import {configureStore} from '@reduxjs/toolkit';
-import {Provider} from 'react-redux';
 import store from './redux/store';
 import {NavigationContainer} from '@react-navigation/native';
 import {AppNavigator} from './nav';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
+const queryClient = new QueryClient();
 export const App = () => {
   return (
-    <Provider store={store}>
+    <QueryClientProvider client={queryClient}>
       <NavigationContainer>
-        <AppNavigator />
+        <SafeAreaProvider>
+          <AppNavigator />
+        </SafeAreaProvider>
       </NavigationContainer>
-    </Provider>
+    </QueryClientProvider>
   );
 };

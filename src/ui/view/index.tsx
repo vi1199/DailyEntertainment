@@ -1,12 +1,5 @@
-import {
-  SafeAreaView,
-  StyleProp,
-  View,
-  ViewProps,
-  ViewStyle,
-} from 'react-native';
-import {SafeAreaViewProps} from 'react-native-safe-area-context';
+import {SafeAreaView, ViewProps} from 'react-native';
 
-export default function VView({children, ...args}: SafeAreaViewProps) {
+export default function VView({children, ...args}: ViewProps) {
   return <SafeAreaView {...args}>{children}</SafeAreaView>;
 }
