@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {VInput, VText, VView} from '../../../ui';
-import {Colors, Palette} from '@src/ui/color';
+import {Colors, Palette} from '@src/ui/colors';
 import {useState} from 'react';
 
 const SEARCH_PLACEHOLDER = 'Search Movies';
@@ -27,6 +27,7 @@ const array = [
 export function HomeSearch() {
   const [value, setValue] = useState('');
   const [list, setList] = useState([]);
+
   const suggestions = [];
   const enteredText = (text: string) => {
     setValue(text);
@@ -47,16 +48,12 @@ export function HomeSearch() {
         key={index}
         onPress={() => setValue(item)}
         style={{
-          backgroundColor: Palette.grey2,
           paddingVertical: 12,
           paddingHorizontal: 16,
         }}>
         <VText style={{color: Palette.black100}}>{item}</VText>
       </TouchableOpacity>
     );
-  }
-  function separator() {
-    return <VView style={{height: 1, backgroundColor: Palette.grey3}} />;
   }
 
   return (
@@ -67,12 +64,7 @@ export function HomeSearch() {
         onChangeText={enteredText}
         value={value}
       />
-      <FlatList
-        data={list}
-        renderItem={renderListItem}
-        extraData={list}
-        ItemSeparatorComponent={separator}
-      />
+      <FlatList data={list} renderItem={renderListItem} extraData={list} />
     </VView>
   );
 }
@@ -80,5 +72,8 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: Palette.white100,
     paddingHorizontal: 16,
+    marginHorizontal: 16,
+    borderRadius: 8,
+    paddingVertical: 12,
   },
 });

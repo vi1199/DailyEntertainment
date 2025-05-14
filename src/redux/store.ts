@@ -1,13 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit';
 import logger from './middleware/logger';
-import monitorReducerEnhancer from './enhancers/monitorReducer';
 import {rootReducer} from '../reducers';
 import {apiSlice} from '@src/services/api.slice';
 
 const store = configureStore({
   reducer: rootReducer,
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(apiSlice.middleware, logger),
+    getDefaultMiddleware().concat(apiSlice.middleware).concat(logger),
 });
 
 export default store;

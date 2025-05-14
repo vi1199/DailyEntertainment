@@ -1,6 +1,6 @@
+import {VView} from '@src/ui';
+import {Colors} from '@src/ui/colors';
 import {StyleSheet} from 'react-native';
-import {VView} from '../../../ui';
-import {Colors} from '../../../ui/colors';
 
 export function Layout({children}: {children: JSX.Element | JSX.Element[]}) {
   return <VView style={styles.container}>{children}</VView>;

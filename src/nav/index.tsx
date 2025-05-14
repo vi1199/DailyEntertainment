@@ -7,7 +7,7 @@ import {routes} from './screens';
 import {RootStackParamList} from './types';
 
 const navOptions: NativeStackNavigationOptions = {
-  headerShown: false,
+  headerTransparent: true,
 };
 export const Stack = createNativeStackNavigator<RootStackParamList>();
 const HomeNavigator = () => {

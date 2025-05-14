@@ -1,5 +1,5 @@
-import {View, ViewProps} from 'react-native';
+import {SafeAreaView, ViewProps} from 'react-native';
 
 export default function VView({children, ...args}: ViewProps) {
-  return <View {...args}>{children}</View>;
+  return <SafeAreaView {...args}>{children}</SafeAreaView>;
 }
