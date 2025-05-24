@@ -1,22 +1,48 @@
 import {queryKeys} from '@src/network/constants';
-import {discoverMoviesList} from '@src/network/networkManager';
+import {
+  apiConfiguration,
+  discoverMoviesList,
+  nowPlayingMoviesList,
+} from '@src/network/networkManager';
 import {VText, VView} from '@src/ui';
-import {Palette} from '@src/ui/colors';
+import {Colors, Palette} from '@src/ui/colors';
+import VImage from '@src/ui/image';
 import {useQuery} from '@tanstack/react-query';
-import {FlatList, StyleSheet} from 'react-native';
+import {ActivityIndicator, FlatList, StyleSheet} from 'react-native';
+import {DiscoverMovieItem} from './DiscoverMovieItem';
+import {DiscoverMoviesItems} from '@src/network/types/discoverMovies';
 
 export function TrendingMoviesList() {
-  const {data: discoverMovies} = useQuery({
-    queryKey: [queryKeys.discoverMovies],
-    queryFn: discoverMoviesList,
+  const {data: configData, isLoading: isLoadingConfig} = useQuery({
+    queryKey: [queryKeys.configuration],
+    queryFn: apiConfiguration,
   });
-  const {results} = discoverMovies;
-  const renderDiscoverMoviesItem = ({item}) => {
+
+  const {
+    data: nowPlayingMovies,
+    isLoading: isLoadingMovies,
+    isError,
+  } = useQuery({
+    queryKey: [queryKeys.nowPlayingMovies],
+    queryFn: nowPlayingMoviesList,
+  });
+
+  console.log('api--', configData, nowPlayingMovies);
+
+  if (isLoadingMovies || isLoadingConfig) {
     return (
-      <VView style={styles.discoverMovieItem}>
-        <VText>{item.title}</VText>
+      <VView style={{flex: 1, backgroundColor: Colors.Secondary['50']}}>
+        <VView
+          style={{justifyContent: 'center', flex: 1, alignItems: 'center'}}>
+          <ActivityIndicator />
+        </VView>
       </VView>
     );
+  }
+  console.log('movies', nowPlayingMovies, isError, 'config:', configData);
+
+  const renderDiscoverMoviesItem = ({item}: {item: DiscoverMoviesItems}) => {
+    return <DiscoverMovieItem movie={item} imageData={configData} />;
   };
   return (
     <VView style={styles.container}>
@@ -27,10 +53,10 @@ export function TrendingMoviesList() {
           marginHorizontal: 8,
           marginVertical: 8,
         }}>
-        Trending
+        Now Playing
       </VText>
       <FlatList
-        data={results}
+        data={nowPlayingMovies?.results}
         renderItem={renderDiscoverMoviesItem}
         numColumns={2}
         keyExtractor={item => item.id.toString()}
@@ -43,12 +69,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginVertical: 8,
-  },
-  discoverMovieItem: {
-    flex: 1,
-    marginVertical: 8,
-    backgroundColor: Palette['yellow7'],
-    marginHorizontal: 8,
-    justifyContent: 'space-between',
   },
 });

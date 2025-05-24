@@ -5,9 +5,11 @@ import {
 import {Home} from '../screens/home/Home.screen';
 import {routes} from './screens';
 import {RootStackParamList} from './types';
+import AppHeader from '@src/ui/AppHeader';
 
 const navOptions: NativeStackNavigationOptions = {
-  headerTransparent: true,
+  headerShadowVisible: false,
+  headerShown: false,
 };
 export const Stack = createNativeStackNavigator<RootStackParamList>();
 const HomeNavigator = () => {
