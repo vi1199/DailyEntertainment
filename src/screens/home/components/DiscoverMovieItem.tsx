@@ -3,14 +3,14 @@ import {VText, VView} from '@src/ui';
 import VImage from '@src/ui/image';
 import {ImageBackground, StyleSheet} from 'react-native';
 import {Colors, Palette} from '@src/ui/colors';
-import {discoverMoviesItems} from '@src/network/types/discoverMovies';
 import {ApiConfig} from '@src/network/types/apiConfig';
+import {DiscoverMoviesItems} from '@src/network/types/discoverMovies';
 
 export function DiscoverMovieItem({
   movie,
   imageData,
 }: {
-  movie: discoverMoviesItems;
+  movie: DiscoverMoviesItems;
   imageData: ApiConfig;
 }) {
   const {
