@@ -1,12 +1,10 @@
 import {queryKeys} from '@src/network/constants';
 import {
   apiConfiguration,
-  discoverMoviesList,
   nowPlayingMoviesList,
 } from '@src/network/networkManager';
 import {VText, VView} from '@src/ui';
-import {Colors, Palette} from '@src/ui/colors';
-import VImage from '@src/ui/image';
+import {Colors} from '@src/ui/colors';
 import {useQuery} from '@tanstack/react-query';
 import {ActivityIndicator, FlatList, StyleSheet} from 'react-native';
 import {DiscoverMovieItem} from './DiscoverMovieItem';
@@ -27,8 +25,6 @@ export function TrendingMoviesList() {
     queryFn: nowPlayingMoviesList,
   });
 
-  console.log('api--', configData, nowPlayingMovies);
-
   if (isLoadingMovies || isLoadingConfig) {
     return (
       <VView style={{flex: 1, backgroundColor: Colors.Secondary['50']}}>
@@ -39,8 +35,6 @@ export function TrendingMoviesList() {
       </VView>
     );
   }
-  console.log('movies', nowPlayingMovies, isError, 'config:', configData);
-
   const renderDiscoverMoviesItem = ({item}: {item: DiscoverMoviesItems}) => {
     return <DiscoverMovieItem movie={item} imageData={configData} />;
   };

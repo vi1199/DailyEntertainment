@@ -11,8 +11,9 @@ import {
   TextStyle,
 } from 'react-native';
 import {HeaderProps} from './types';
-import {Palette} from './colors';
+import {Colors, Palette} from './colors';
 import {HEADER_HEIGHT, STATUSBAR_HEIGHT} from '@src/utils';
+import VIcon from './icons';
 
 const AppHeader: React.FC<HeaderProps> = ({
   title,
@@ -39,8 +40,13 @@ const AppHeader: React.FC<HeaderProps> = ({
               style={styles.backButton}
               onPress={onBackPress}
               hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}>
-              {/* Simple text arrow - replace with your own back icon component */}
-              <Text style={styles.backButtonText}>←</Text>
+              <View pointerEvents="none">
+                <VIcon
+                  name="arrow-left"
+                  size={24}
+                  color={Colors.Secondary['500']}
+                />
+              </View>
             </TouchableOpacity>
           )}
           {leftIcons.map((item, index) => (
@@ -69,7 +75,7 @@ const AppHeader: React.FC<HeaderProps> = ({
               style={styles.iconButton}
               onPress={item.onPress}
               hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}>
-              {item.icon}
+              <View pointerEvents="none">{item.icon}</View>
             </TouchableOpacity>
           ))}
         </View>
