@@ -10,6 +10,7 @@ import {ActivityIndicator, FlatList, StyleSheet} from 'react-native';
 import {DiscoverMovieItem} from './DiscoverMovieItem';
 import {DiscoverMoviesItems} from '@src/network/types/discoverMovies';
 import {useTranslation} from 'react-i18next';
+import {buildImageUrl} from '@src/utils';
 
 export function TrendingMoviesList() {
   const {t} = useTranslation();
@@ -37,9 +38,15 @@ export function TrendingMoviesList() {
       </VView>
     );
   }
+  if (!configData || !nowPlayingMovies?.results) {
+    return <VText>{t('common.no_data')}</VText>;
+  }
+
   const renderDiscoverMoviesItem = ({item}: {item: DiscoverMoviesItems}) => {
-    return <DiscoverMovieItem movie={item} imageData={configData} />;
+    const imageBuilder = buildImageUrl(configData, item.poster_path);
+    return <DiscoverMovieItem posterUrl={imageBuilder} />;
   };
+
   return (
     <VView style={styles.container}>
       <VText

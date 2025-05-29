@@ -5,34 +5,22 @@ import {ImageBackground, StyleSheet} from 'react-native';
 import {Colors, Palette} from '@src/ui/colors';
 import {ApiConfig} from '@src/network/types/apiConfig';
 import {DiscoverMoviesItems} from '@src/network/types/discoverMovies';
+import React from 'react';
 
-export function DiscoverMovieItem({
-  movie,
-  imageData,
+export const DiscoverMovieItem = React.memo(function DiscoverMovieItem({
+  posterUrl,
 }: {
-  movie: DiscoverMoviesItems;
-  imageData: ApiConfig;
+  posterUrl: string | null;
 }) {
-  const {
-    secure_base_url,
-    logo_sizes,
-    poster_sizes,
-    profile_sizes,
-    backdrop_sizes,
-    still_sizes,
-  } = imageData.images;
-
-  const backdropUrl = `${secure_base_url}${poster_sizes[3]}${movie.poster_path}`;
-
   const itemHeight = MOVIE_ITEM_WIDTH * 1.5;
 
-  console.log('DiscoverMovieItem', movie.backdrop_path, backdropUrl);
+  console.log('DiscoverMovieItem', posterUrl);
 
   return (
     <VView style={styles.discoverMovieItem}>
       <ImageBackground
         resizeMode="cover"
-        source={{uri: backdropUrl}}
+        source={{uri: posterUrl}}
         imageStyle={{borderRadius: 12}}
         style={{
           height: itemHeight,
@@ -41,7 +29,7 @@ export function DiscoverMovieItem({
         }}></ImageBackground>
     </VView>
   );
-}
+});
 
 const styles = StyleSheet.create({
   discoverMovieItem: {

@@ -8,5 +8,20 @@
     "settings_title": "Settings",
     "chooseLanguage": "Choose a language",
     "selected_your_preferred_language": "Select your preferred language"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "close": "Close",
+    "no_data": "No data available"
   }
 }
