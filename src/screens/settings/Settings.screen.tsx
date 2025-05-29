@@ -7,9 +7,11 @@ import {Colors} from '@src/ui/colors';
 import {View} from 'react-native';
 import {ProfileAvatar} from './components/ProfileAvatar';
 import {PreferencesView} from './components/PreferencesView';
+import {useTranslation} from 'react-i18next';
 
 type Props = NativeStackScreenProps<RootStackParamList, routes.SETTINGS>;
 function SettingScreen({route, navigation}: Props) {
+  const {t} = useTranslation();
   const onBackPress = () => {
     navigation.goBack();
   };
@@ -19,13 +21,13 @@ function SettingScreen({route, navigation}: Props) {
         showBackButton
         onBackPress={onBackPress}
         backgroundColor={Colors.Secondary['50']}
-        title="Settings"
+        title={t('settings.settings_title')}
       />
       <ProfileAvatar />
       <VView style={{margin: 16}}>
         <VText>Preferences</VText>
       </VView>
-      <PreferencesView />
+      <PreferencesView nav={navigation} />
     </VView>
   );
 }

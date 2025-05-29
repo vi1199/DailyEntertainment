@@ -1,8 +1,24 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {languageAtom} from '@src/atoms/languageAtom';
+import {languageNames} from '@src/locales';
+import {routes} from '@src/nav/screens';
+import {RootStackParamList} from '@src/nav/types';
 import {VText, VView} from '@src/ui';
 import {Colors} from '@src/ui/colors';
 import VIcon from '@src/ui/icons';
-
-export function PreferencesView() {
+import {useAtom} from 'jotai';
+import {useTranslation} from 'react-i18next';
+import {TouchableOpacity} from 'react-native';
+type Props = NativeStackScreenProps<
+  RootStackParamList,
+  routes.LANGUAGE_SETTINGS
+>;
+export function PreferencesView({nav}) {
+  const [language, setLanguage] = useAtom(languageAtom);
+  const {t} = useTranslation();
+  const gotoLanguageSettings = () => {
+    nav.navigate(routes.LANGUAGE_SETTINGS);
+  };
   return (
     <VView
       style={{
@@ -25,23 +41,24 @@ export function PreferencesView() {
             marginHorizontal: 8,
           }}>
           <VIcon name="languages" size={24} color={Colors.Secondary['500']} />
-          <VText style={{marginLeft: 8}}>Language</VText>
+          <VText style={{marginLeft: 8}}>{t('settings.language')}</VText>
         </VView>
 
-        <VView
+        <TouchableOpacity
+          onPress={gotoLanguageSettings}
           style={{
             flexDirection: 'row',
             alignItems: 'center',
             marginVertical: 12,
             marginHorizontal: 8,
           }}>
-          <VText style={{marginRight: 8}}>English</VText>
+          <VText style={{marginRight: 8}}>{languageNames[language]}</VText>
           <VIcon
             name="chevron-right"
             size={24}
             color={Colors.Secondary['500']}
           />
-        </VView>
+        </TouchableOpacity>
       </VView>
       <VView
         style={{

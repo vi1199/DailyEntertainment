@@ -9,8 +9,10 @@ import {useQuery} from '@tanstack/react-query';
 import {ActivityIndicator, FlatList, StyleSheet} from 'react-native';
 import {DiscoverMovieItem} from './DiscoverMovieItem';
 import {DiscoverMoviesItems} from '@src/network/types/discoverMovies';
+import {useTranslation} from 'react-i18next';
 
 export function TrendingMoviesList() {
+  const {t} = useTranslation();
   const {data: configData, isLoading: isLoadingConfig} = useQuery({
     queryKey: [queryKeys.configuration],
     queryFn: apiConfiguration,
@@ -47,7 +49,7 @@ export function TrendingMoviesList() {
           marginHorizontal: 8,
           marginVertical: 8,
         }}>
-        Now Playing
+        {t('home.now_playing')}
       </VText>
       <FlatList
         data={nowPlayingMovies?.results}

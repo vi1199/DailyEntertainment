@@ -1,0 +1,12 @@
+{
+  "home": {
+    "title": "Welcome Home",
+    "now_playing": "Now Playing"
+  },
+  "settings": {
+    "language": "Language",
+    "settings_title": "Settings",
+    "chooseLanguage": "Choose a language",
+    "selected_your_preferred_language": "Select your preferred language"
+  }
+}
