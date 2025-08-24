@@ -4,6 +4,8 @@ import {routes} from './screens';
 
 export type RootStackParamList = {
   [routes.HOME]: undefined;
+  [routes.SETTINGS]: undefined;
+  [routes.LANGUAGE_SETTINGS]: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =

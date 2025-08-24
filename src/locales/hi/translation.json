@@ -1,0 +1,12 @@
+{
+  "home": {
+    "title": "होम",
+    "now_playing": "अब चल रहा है"
+  },
+  "settings": {
+    "language": "भाषा",
+    "settings_title": "सेटिंग्स",
+    "chooseLanguage": "एक भाषा चुनें",
+    "selected_your_preferred_language": "अपनी पसंदीदा भाषा चुनें"
+  }
+}

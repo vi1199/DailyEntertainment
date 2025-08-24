@@ -6,6 +6,8 @@ import {Home} from '../screens/home/Home.screen';
 import {routes} from './screens';
 import {RootStackParamList} from './types';
 import AppHeader from '@src/ui/AppHeader';
+import SettingScreen from '@src/screens/settings/Settings.screen';
+import LanguageSettings from '@src/screens/settings/LanguageSettings.screen';
 
 const navOptions: NativeStackNavigationOptions = {
   headerShadowVisible: false,
@@ -16,6 +18,11 @@ const HomeNavigator = () => {
   return (
     <Stack.Navigator screenOptions={navOptions}>
       <Stack.Screen name={routes.HOME} component={Home} />
+      <Stack.Screen name={routes.SETTINGS} component={SettingScreen} />
+      <Stack.Screen
+        name={routes.LANGUAGE_SETTINGS}
+        component={LanguageSettings}
+      />
     </Stack.Navigator>
   );
 };

@@ -1,18 +1,19 @@
 import {queryKeys} from '@src/network/constants';
 import {
   apiConfiguration,
-  discoverMoviesList,
   nowPlayingMoviesList,
 } from '@src/network/networkManager';
 import {VText, VView} from '@src/ui';
-import {Colors, Palette} from '@src/ui/colors';
-import VImage from '@src/ui/image';
+import {Colors} from '@src/ui/colors';
 import {useQuery} from '@tanstack/react-query';
 import {ActivityIndicator, FlatList, StyleSheet} from 'react-native';
 import {DiscoverMovieItem} from './DiscoverMovieItem';
 import {DiscoverMoviesItems} from '@src/network/types/discoverMovies';
+import {useTranslation} from 'react-i18next';
+import {buildImageUrl} from '@src/utils';
 
 export function TrendingMoviesList() {
+  const {t} = useTranslation();
   const {data: configData, isLoading: isLoadingConfig} = useQuery({
     queryKey: [queryKeys.configuration],
     queryFn: apiConfiguration,
@@ -27,8 +28,6 @@ export function TrendingMoviesList() {
     queryFn: nowPlayingMoviesList,
   });
 
-  console.log('api--', configData, nowPlayingMovies);
-
   if (isLoadingMovies || isLoadingConfig) {
     return (
       <VView style={{flex: 1, backgroundColor: Colors.Secondary['50']}}>
@@ -39,11 +38,15 @@ export function TrendingMoviesList() {
       </VView>
     );
   }
-  console.log('movies', nowPlayingMovies, isError, 'config:', configData);
+  if (!configData || !nowPlayingMovies?.results) {
+    return <VText>{t('common.no_data')}</VText>;
+  }
 
   const renderDiscoverMoviesItem = ({item}: {item: DiscoverMoviesItems}) => {
-    return <DiscoverMovieItem movie={item} imageData={configData} />;
+    const imageBuilder = buildImageUrl(configData, item.poster_path);
+    return <DiscoverMovieItem posterUrl={imageBuilder} />;
   };
+
   return (
     <VView style={styles.container}>
       <VText
@@ -53,7 +56,7 @@ export function TrendingMoviesList() {
           marginHorizontal: 8,
           marginVertical: 8,
         }}>
-        Now Playing
+        {t('home.now_playing')}
       </VText>
       <FlatList
         data={nowPlayingMovies?.results}

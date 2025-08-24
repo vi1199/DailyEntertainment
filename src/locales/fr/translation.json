@@ -1,0 +1,12 @@
+{
+  "home": {
+    "title": "Bienvenue chez vous",
+    "now_playing": "En cours de lecture"
+  },
+  "settings": {
+    "language": "Langue",
+    "settings_title": "Paramètres",
+    "chooseLanguage": "Choisissez une langue",
+    "selected_your_preferred_language": "Sélectionnez votre langue préférée"
+  }
+}

@@ -1,3 +1,4 @@
+import {ApiConfig} from '@src/network/types/apiConfig';
 import {Dimensions, Platform, StatusBar} from 'react-native';
 
 export const HEADER_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
@@ -7,3 +8,8 @@ export const STATUSBAR_HEIGHT =
 export const {width: SCREEN_WIDTH} = Dimensions.get('window');
 export const MOVIELIST_COLUMN_COUNT = 2;
 export const MOVIE_ITEM_WIDTH = (SCREEN_WIDTH - 32) / MOVIELIST_COLUMN_COUNT;
+
+export function buildImageUrl(config: ApiConfig, posterPath: string | null) {
+  const {secure_base_url, poster_sizes} = config.images;
+  return `${secure_base_url}${poster_sizes[3]}${posterPath}`;
+}
